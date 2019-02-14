@@ -1,0 +1,90 @@
+\documentclass[SE,lsstdraft,toc]{lsstdoc}
+
+% lsstdoc documentation: https://lsst-texmf.lsst.io/lsstdoc.html
+
+% Package imports go here.
+
+% Local commands go here.
+
+% To add a short-form title:
+% \title[Short title]{Title}
+\title{Defining the Transformation Between Camera Engineering Coordinates and Camera Data Visualization Coordinates}
+
+% Optional subtitle
+% \setDocSubtitle{A subtitle}
+
+\author{%
+K. Simon Krughoff
+}
+
+\setDocRef{LSE-349}
+
+\date{\today}
+
+% Optional: name of the document's curator
+% \setDocCurator{The Curator of this Document}
+
+\setDocAbstract{%
+There are various reasons for wanting to produce a representation of the camera focal plane in a physical coordinate system with the sensors oriented as they reside in the assembled instrument. The first reason is engineering diagrams used for fabrication and assembly of the camera. The second is visualization for quality assesment, data analysis, or science verification purposes. For reasons motivated herein, these two corrdinates systems cannot be the same for LSST. This document presents the coordinate transform to be applied in translating between the two coordinate systems: 1) the camera engineering coordinate system and 2) the camera data visualization coordinate system.
+}
+
+% Change history defined here.
+% Order: oldest first.
+% Fields: VERSION, DATE, DESCRIPTION, OWNER NAME.
+% See LPM-51 for version number policy.
+\setDocChangeRecord{%
+  \addtohist{1}{YYYY-MM-DD}{Unreleased.}{K. Simon Krughoff}
+}
+
+\begin{document}
+
+% Create the title page.
+% Table of contents is added automatically with the "toc" class option.
+\maketitle
+
+
+
+% ADD CONTENT HERE ... a file per section can be good for editing
+\input{body}
+\section{Introduction}
+Early on in the project, engineerign diagrams were produced that describe in great detail the layout of the camera as a whole and of the camera focalplane specifically. See \citeds{LCA-13381} for the latest iteration on these diagrams. The coordinate system was chosen such that a single consistent coordinate system could be applied to the telescope, camera, focal plane, rafts, and sensors.
+
+Following the engineering coordinate system all the way down to the sensor level shows that the x-axis happens to align with the parallel transfer direction of the individual segments.
+
+Note that the engineering cooridnate system is also used to inform how the various components in the focalplane are named. The naming convention is to index (x, y) from the lower left corner of the focalplane to the upper right in engineering coordinates. This leads to names like "R:2,0"\footnote{This specific naming convention is that adopted by the DM subsystem, but is based on the indexing scheme from the camera engineering diagrams} for the raft in the third column of the first row. Similar names apply to sensors within rafts and segments within sensors. This document does not suggest changing the names of the various components, merely that they be displayed in different coordinate systems depending upon context.
+
+\section{Data Visualization}
+People conducting data visualization at the sensor level in astronomy are very used to seeing pixel data presented such that the serial register is in a horizontal orientation with the parallel transfer direction oriented vertically. This is primarily because that is the most natural orientation if the serial register is thought of as being clocked out from left to right with parallel transfer thought of as being down. Since bleeding due to saturation is more prominent along the parallel transfer direction, bleed trails are typically shown in the vertical direction.
+
+Because of the long history of astronomers looking at images in the orientation where the serial register is along the x-axis and the parallel transfer direction is along the y-axis, it is highly desireable to maintain the same orientation when view larger chunks of data. That is, maintain this orientation whether visualizing sensors, rafts, or the full focalplane for self consistency. Fortunately, in the design of the LSST camera, the sensors all have the same orientation except for two of the wave front sensors. This makes choosing a coordinate system for data visualization relatively trivial.
+
+\section{Coordinate Systems}
+Since the coordinate system for the engineering diagrams is already decided, the only question is how to map that coordiante system to on where the vertical axis is mapped to the horizontal axis and vice versa. There are two obvious ways to do that:
+
+\begin{list}
+\item Rotation: A rotation of 90 degrees maps +y -> -x and +x -> +y.
+\item Transpose: A transpose maps +y -> +x and +x -> +y.
+\end{list}
+
+For this situation, the transpose is a much better option.
+
+\begin{enumerate}
+\item Because it is simply switching the x and y indexes, it makes it much easier to do the mapping in your head.
+\item Having looked at simulations of the LSST camera the transpose would put the sky coorinates in an orientation that is congruent with the way astronomers have historically looked at them. Specifically +E is 90 degrees counterclockwise from +N. See the figure of data plotted in engineering coordinates with the coordinate grid overplotted.
+\end{enumerate}
+
+\section{Conclusion}
+In the context of engineering diagrams, the coordinate system is already defined and is that presented in LCA-13381. In the context of data visualization, visual representation of any component of the camera focal plane will be in a coordinate system that is the transpose of the engineering coordinate system
+
+The origin of the camera engineering coordinate system is in the center of the focal plane. It is convenient to keep the same convention in the data visualization coordinate system, though for some visualizations it may be more natural to translate the origin for purposes of making the visualization more accessible. This document does not preclude translation of the origin in once coordinate system with respect to the other.
+
+\appendix
+% Include all the relevant bib files.
+% https://lsst-texmf.lsst.io/lsstdoc.html#bibliographies
+\section{References} \label{sec:bib}
+\bibliography{lsst,lsst-dm,refs_ads,refs,books}
+
+%Make sure lsst-texmf/bin/generateAcronyms.py is in your path
+\section{Acronyms used in this document}\label{sec:acronyms}
+\input{acronyms.tex}
+\end{document}
