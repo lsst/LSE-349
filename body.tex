@@ -25,19 +25,17 @@ For this situation, the transpose is a much better option because:
 \item The resulting sky orientation follows the convention preferred by astronomers: +E 90 degrees counterclockwise from +N.  See Figure 1 of data plotted in data visualization coordinates with the celestial coordinate grid overplotted.
 \end{enumerate}
 
-\begin{figure}[!htb]
-\centering
+\begin{center}
 \includegraphics[width=0.75\textwidth]{figures/ds9_coords_with_arrows.png}
-\caption{This image is in the data visualization coordinate system (DVCS).  The engineering diagram coordinate system (EDCS) is shown in the lower left of the image.  Notice that in these coordinates, east is 90 degrees from north in the counter clockwise direction.}
-\end{figure}
+\captionof{figure}{This image is in the data visualization coordinate system (DVCS).  The engineering diagram coordinate system (EDCS) is shown in the lower left of the image.  Notice that in these coordinates, east is 90 degrees from north in the counter clockwise direction.}
+\end{center}
 
 \section{Conclusion}
 In the context of engineering diagrams, the coordinate system is already defined and is that presented in \citeds{LCA-13381}. In the context of data visualization, visual representation of any component of the camera focal plane will be in a coordinate system that is the transpose of the engineering coordinate system.  See Figure 2 for a comparison of the two coordinate systems.
 
 The origin of the camera engineering coordinate system is in the center of the focal plane. It is convenient to keep the same convention in the data visualization coordinate system, though for some visualizations it may be more natural to translate the origin for purposes of making the visualization more accessible. This document does not preclude translation of the origin in one coordinate system with respect to the other.
 
-\begin{figure}[!htb]
-\centering
+\begin{center}
 \includegraphics[width=0.75\textwidth]{figures/fp.png}
-\caption{This image is in the data visualization coordinate system (DVCS).  The engineering diagram coordinate system (EDCS) is shown in the lower left of the image.  Sensors are labeled following the convention in LCA-13381. Blue sensors are science sensors.  Red sensors are the wavefront sensors and green sensors are the guider chips.}
-\end{figure}
+\captionof{figure}{This image is in the data visualization coordinate system (DVCS).  The engineering diagram coordinate system (EDCS) is shown in the lower left of the image.  Sensors are labeled following the convention in LCA-13381. Blue sensors are science sensors.  Red sensors are the wavefront sensors and green sensors are the guider chips.}
+\end{center}
