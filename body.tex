@@ -10,6 +10,8 @@ People conducting data visualization at the sensor level in astronomy are very u
 
 Because of the long history of astronomers looking at images in the orientation where the serial register is along the x-axis and the parallel transfer direction is along the y-axis, it is highly desirable to maintain the same orientation when view larger chunks of data. That is, maintain this orientation whether visualizing sensors, rafts, or the full focal plane for self consistency. Fortunately, in the design of the LSST camera, the sensors all have the same orientation except for two of the wave front sensors. This makes choosing a coordinate system for data visualization relatively trivial.
 
+Data from DECam, Hyper Suprime-Cam, MegaCam, and others have been successfully processed through LSST code using this convention.
+
 \section{Coordinate Systems}
 Since the coordinate system for the engineering diagrams is already decided, the only question is how to map that coordinate system to one where the vertical axis is mapped to the horizontal axis and vice versa. There are two obvious ways to do that:
 
@@ -32,6 +34,8 @@ For this situation, the transpose is a much better option because:
 
 \section{Conclusion}
 In the context of engineering diagrams, the coordinate system is already defined and is that presented in \citeds{LCA-13381}. In the context of data visualization, visual representation of any component of the camera focal plane will be in a coordinate system that is the transpose of the engineering coordinate system.  See Figure 2 for a comparison of the two coordinate systems.
+
+The the data visualization coordinate system will be used by any public facing displays including control room display, public outreach graphics, and quality assessment dashboards.
 
 The origin of the camera engineering coordinate system is in the center of the focal plane. It is convenient to keep the same convention in the data visualization coordinate system, though for some visualizations it may be more natural to translate the origin for purposes of making the visualization more accessible. This document does not preclude translation of the origin in one coordinate system with respect to the other.
 
