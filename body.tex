@@ -32,6 +32,8 @@ For this situation, the transpose is a much better option because:
 \captionof{figure}{This image is in the data visualization coordinate system (DVCS).  The engineering diagram coordinate system (EDCS) is shown in the lower left of the image.  Notice that in these coordinates, east is 90 degrees from north in the counter clockwise direction.}
 \end{center}
 
+To be clear, the convention of transposing the engineering diagram coordinate system means that, in the data visualization coordinate system, the pixel grids must also be transposed.  For LSST, this means that the origin of all science sensor pixel grids will correspond to the same physical pixel (given the same sensor vendor).  Specifically, this will be the lower left pixel of segment (0,0) for the science sensors.  The same cannot be said for sensors in the corner rafts since they contain sensors that are rotated relative to the science sensors.  E.g. for the wavefront sensors, the pixel at the origin will be the lower left pixel of the segment 7 on the high chip, segment 0 of the low chip, segment 7 of the low chip, and segment 0 of the high chip for rafts (0,0), (0,4), (4,4), and (4,0) respectively.  This document does not intend to dictate what coordinate system is used in processing, simply the data visualization coordinate system.
+
 \section{Conclusion}
 In the context of engineering diagrams, the coordinate system is already defined and is that presented in \citeds{LCA-13381}. In the context of data visualization, visual representation of any component of the camera focal plane will be in a coordinate system that is the transpose of the engineering coordinate system.  See Figure 2 for a comparison of the two coordinate systems.
 
